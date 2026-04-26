@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adipa — Extractor de Preguntas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Extractor de Preguntas</h1>
+      <p class="subtitle">Sube un documento PDF, DOCX o XLSX para extraer las preguntas automáticamente.</p>
+    </header>
+
+    <section
+      id="drop-zone"
+      role="button"
+      tabindex="0"
+      aria-label="Zona para soltar archivo o presionar Enter para seleccionar"
+    >
+      <p class="drop-zone-title">Arrastra tu archivo aquí</p>
+      <p class="drop-zone-hint">o</p>
+      <label for="file-input" class="btn-secondary">Seleccionar archivo</label>
+      <input
+        type="file"
+        id="file-input"
+        accept=".pdf,.docx,.xlsx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        hidden
+      />
+      <p class="drop-zone-formats">Formatos: PDF, DOCX, XLSX · Máx. 10 MB</p>
+    </section>
+
+    <div id="file-info" class="file-info" hidden>
+      <div class="file-info-text">
+        <span id="file-name"></span>
+        <span id="file-size" class="file-size"></span>
+      </div>
+      <button id="btn-clear" type="button" class="btn-link" aria-label="Quitar archivo">Quitar</button>
+    </div>
+
+    <div class="actions">
+      <button id="btn-process" type="button" disabled>Procesar</button>
+      <div id="spinner" class="spinner" role="status" aria-live="polite">
+        <div class="spinner-circle" aria-hidden="true"></div>
+        <span>Procesando documento…</span>
+      </div>
+    </div>
+
+    <div id="error-box" class="error-box" role="alert" hidden></div>
+
+    <section id="result-box" class="result-box" hidden>
+      <div class="result-header">
+        <span id="result-count"></span>
+        <button id="btn-download" type="button">Descargar JSON</button>
+      </div>
+
+      <div id="questions-list" class="questions-list"></div>
+
+      <details class="json-details">
+        <summary>Ver JSON crudo</summary>
+        <pre id="result-json"></pre>
+      </details>
+    </section>
+  </main>
+  <script src="env.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
