@@ -1,0 +1,8 @@
+fastapi==0.112.0
+uvicorn[standard]
+python-multipart
+pymupdf
+python-docx
+openpyxl
+openai
+pydantic
