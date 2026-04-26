@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: adipa-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./api/Dockerfile
+    dockerContext: ./api
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: CORS_ORIGINS
+        sync: false
+
+  - type: web
+    name: adipa-frontend
+    runtime: static
+    staticPublishPath: ./frontend/static
+    autoDeploy: true
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: "public, max-age=300, must-revalidate"
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
