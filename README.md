@@ -2,6 +2,18 @@
 
 Aplicación web para extraer y estructurar preguntas desde documentos de evaluación (PDF, DOCX, XLSX) usando Groq AI.
 
+## Nota para el revisor
+
+La app ya está desplegada y se puede probar directamente en:
+
+**https://adipa-frontend.onrender.com**
+
+Algunas cosas a tener en cuenta:
+
+- Está corriendo en el tier gratuito de Render, así que el primer request puede tardar entre 30 y 60 segundos porque el servicio se duerme tras 15 minutos sin tráfico (cold start). Después de la primera petición ya responde rápido.
+- En la carpeta `examples/` del repo dejé tres archivos de prueba (PDF, DOCX y XLSX) listos para subir y ver el resultado.
+- Si querés correrlo localmente, las instrucciones están más abajo en este mismo README.
+
 ## Requisitos
 
 - [Docker](https://docs.docker.com/get-docker/) y Docker Compose
@@ -120,9 +132,3 @@ Render requiere tarjeta de crédito registrada en la cuenta para crear Web Servi
 | `GROQ_MODEL` | adipa-api | `llama-3.3-70b-versatile` (pre-configurado) |
 | `CORS_ORIGINS` | adipa-api | URL del frontend en Render |
 | `PORT` | adipa-api | inyectada automáticamente por Render |
-
-### Tier gratuito
-
-- Los Web Services se duermen tras 15 minutos sin tráfico (~30-60 s de cold start en la primera petición).
-- 750 horas/mes de ejecución por cuenta (una instancia corriendo 24/7 = ~744 h/mes).
-- Static Sites no se duermen (CDN).
